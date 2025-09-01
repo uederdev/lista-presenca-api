@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +43,13 @@ public class DepartamentoController {
     @PostMapping("/departamentos/v1")
     public ResponseEntity<DepartamentoList> save(@RequestBody DepartamentoList dto) {
         var depto = service.save(dto);
-        return ResponseEntity.created(Util.createUri(depto.id(), "/departamentos/v1")).body(null);
+        return ResponseEntity.created(Util.createUri(depto.id(), "/departamentos/v1")).body(depto);
+    }
+
+    @PutMapping("/departamentos/v1/{id}")
+    public ResponseEntity<DepartamentoList> update(@PathVariable Long id, @RequestBody DepartamentoList dto) {
+        var depto = service.save(dto);
+        return ResponseEntity.ok(depto);
     }
 
 }

@@ -48,7 +48,7 @@ public class CargoController {
     }
 
     @DeleteMapping("/cargos/v1/{id}")
-    public ResponseEntity<?> save(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.ok().body("Cargo deletado com sucesso!");
     }
